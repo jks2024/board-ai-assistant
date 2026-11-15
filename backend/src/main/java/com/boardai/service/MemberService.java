@@ -83,7 +83,7 @@ public class MemberService {
         }
     }
 
-    // 회원 목록 페이지 네이지네이션
+    // 회원 목록 페이지네이션
     public PageResDto<MemberResDto> getMemberPage(int page, int size) {
         // PageRequest.of(페이지번호, 페이지크기, 정렬)
         // - 페이지번호는 0부터 시작 (0 = 첫 페이지)

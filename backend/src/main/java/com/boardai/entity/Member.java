@@ -12,7 +12,7 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "member")  // 이 코드가 없어도 동일하게 동잡 함.
+@Table(name = "member")  // 클래스 이름과 같으면 생략해도 됨
 @Getter  // 게터 메서드 자동 생성
 @Setter // 세터 메서드 자동 생성
 @NoArgsConstructor  // 매개변수가 없는 생성자 자동 생성
@@ -26,8 +26,8 @@ public class Member {
     @Column(length = 100) // 이름 필드 길이 제한
     private String name;
 
-    @Column(nullable = true) // 비밀번호는 필수 필드
-    private String pwd; // 비밀번호 저장 시 해시 암호화 적용 필요
+    @Column(nullable = true) // 카카오 회원은 비밀번호가 없음 (일반 회원은 BCrypt 해시)
+    private String pwd; // BCrypt 해시로 저장
 
     @Column(unique = true, length = 150) // 이메일 유니크 제약 조건 및 길이 제한
     private String email;

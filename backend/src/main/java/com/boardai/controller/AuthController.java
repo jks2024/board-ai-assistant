@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@RestController  // Restfull API, 직렬화/역질렬화 기능 제공
+@RestController  // REST API, JSON 직렬화/역직렬화
 @RequestMapping("/auth")  // http://localhost:8111/auth/
 @RequiredArgsConstructor
 public class AuthController {

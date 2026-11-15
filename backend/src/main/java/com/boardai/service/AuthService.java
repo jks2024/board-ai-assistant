@@ -82,7 +82,7 @@ public class AuthService {
         String kakaoToken = kakaoOAuthService.getAccessToken(code);
         KakaoUserInfo info = kakaoOAuthService.getUserInfo(kakaoToken);
 
-        // 처음 이면 자종 가입, 이미 있으면 그대로 사용
+        // 처음이면 자동 가입, 이미 있으면 그대로 사용
         Member member = memberRepository.findByProviderAndProviderId(Provider.KAKAO, info.id())
                 .orElseGet(() -> memberRepository.save(toKakaoMember(info)));
 

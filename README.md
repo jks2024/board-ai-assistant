@@ -1,5 +1,7 @@
 # 게시판 AI 도우미 — Spring Boot · React · FastAPI · LangGraph 풀스택 RAG
 
+[![verify](https://github.com/jks2024/board-ai-assistant/actions/workflows/verify.yml/badge.svg)](https://github.com/jks2024/board-ai-assistant/actions/workflows/verify.yml)
+
 게시판에 쓴 글이 그대로 AI의 지식이 되는 서비스입니다. 글을 쓰면 자동으로 색인되고, 고치면 다시 색인되고, 지우면 검색에서 빠집니다. AI는 **게시판 글만 근거로, 출처 번호를 붙여, 권한 안에서** 답합니다.
 
 ```
@@ -82,7 +84,8 @@ cd ai-service && python scripts/seed.py
 
 ```bash
 cd ai-service && pytest -q          # API·그래프 11개
-cd backend && ./gradlew test        # MySQL 필요 (.env)
+cd ai-service && python scripts/e2e_check.py all   # 세 서버 + seed 후 시나리오 25개
+cd backend && ./gradlew test        # MySQL 필요 (.env) - 테스트 전용 DB board_ai_test
 cd frontend && npm run build
 ```
 

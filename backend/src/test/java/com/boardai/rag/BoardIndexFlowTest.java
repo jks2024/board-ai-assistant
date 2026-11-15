@@ -27,8 +27,13 @@ import static org.mockito.Mockito.*;
 /*
  * 색인 동기화 통합 테스트 (MySQL 필요, FastAPI 는 Mock)
  * 테스트 메서드에 @Transactional 을 붙이지 않습니다 → 실제로 커밋되어야 AFTER_COMMIT 리스너가 실행됨
+ * 개발 DB(board_ai)를 더럽히지 않도록 테스트 전용 DB(board_ai_test)를 만들고 끝나면 지웁니다.
  */
-@SpringBootTest
+@SpringBootTest(properties = {
+        "spring.datasource.url=jdbc:mysql://localhost:3306/board_ai_test?createDatabaseIfNotExist=true"
+                + "&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul",
+        "spring.jpa.hibernate.ddl-auto=create-drop"
+})
 class BoardIndexFlowTest {
     static final String WRITER = "flow-writer@test.com";
     static final String OTHER = "flow-other@test.com";

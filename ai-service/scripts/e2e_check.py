@@ -52,7 +52,9 @@ def phase_all():
     study = find_board("스터디 모임 공지")
     check("시드 데이터: 스터디 모임 공지 존재", study is not None)
     sid = study["boardId"]
-    check("시드 글 색인 상태 READY", all(b["indexStatus"] == "READY" for b in c.get("/board/list").json()))
+    seed_titles = {"스터디 모임 공지", "점심 맛집 추천", "React useEffect가 두 번 실행돼요"}
+    check("시드 글 색인 상태 READY", all(b["indexStatus"] == "READY" for b in c.get("/board/list").json()
+                                         if b["title"] in seed_titles))
 
     r = ask(A, "스터디 모임은 언제 하나요?").json()
     check("답변 + 출처", not r["abstained"] and "목요일" in r["answer"] and r["sources"][0]["boardId"] == sid, r)

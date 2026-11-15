@@ -33,11 +33,7 @@ public class MemberController {
     // 회원 상세 조회 : GET http://localhost:8111/member/{email}
     @GetMapping("/{email}")
     public ResponseEntity<MemberResDto> memberDetail(@PathVariable String email) {
-        try {
-            return ResponseEntity.ok(memberService.getMemberDetail(email));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();  // 404
-        }
+        return ResponseEntity.ok(memberService.getMemberDetail(email));   // 없으면 404 (GlobalExceptionHandler)
     }
 
     // 회원 수정 : PUT http://localhost:8111/member/modify

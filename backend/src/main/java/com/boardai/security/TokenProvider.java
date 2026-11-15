@@ -22,17 +22,17 @@ import java.util.UUID;
 @Component
 public class TokenProvider {
     private static final String AUTH_KEY = "auth";   // 권한 클레임
-    private static final String TYPE_KEY = "typ";    // 토큰 종류 클레임 ★
-    public static final String ACCESS = "access";    // ★
-    public static final String REFRESH = "refresh";  // ★
+    private static final String TYPE_KEY = "typ";    // 토큰 종류 클레임
+    public static final String ACCESS = "access";
+    public static final String REFRESH = "refresh";
 
     private final SecretKey key;
     private final long accessExpMs;
-    private final long refreshExpMs;                 // ★
+    private final long refreshExpMs;
 
     public TokenProvider(@Value("${jwt.secret}") String secret,
                          @Value("${jwt.access-exp-ms}") long accessExpMs,
-                         @Value("${jwt.refresh-exp-ms}") long refreshExpMs) {   // ★
+                         @Value("${jwt.refresh-exp-ms}") long refreshExpMs) {
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
         this.accessExpMs = accessExpMs;
         this.refreshExpMs = refreshExpMs;
@@ -47,13 +47,13 @@ public class TokenProvider {
         String accessToken = Jwts.builder()
                 .subject(email)                       // sub: 이메일
                 .claim(AUTH_KEY, authority.name())    // auth: ROLE_USER
-                .claim(TYPE_KEY, ACCESS)              // typ: access ★
+                .claim(TYPE_KEY, ACCESS)              // typ: access
                 .issuedAt(new Date(now))
                 .expiration(accessExp)
                 .signWith(key)
                 .compact();
 
-        String refreshToken = Jwts.builder()          // ★ Refresh 발급
+        String refreshToken = Jwts.builder()          // Refresh 발급
                 .subject(email)
                 .claim(TYPE_KEY, REFRESH)             // typ: refresh (권한 정보 없음)
                 .id(UUID.randomUUID().toString())     // jti: 같은 초에 발급해도 값이 달라지도록
@@ -66,7 +66,7 @@ public class TokenProvider {
                 refreshToken, refreshExp.getTime());
     }
 
-    // 서명 + 만료 + 토큰 종류 검증 ★ expectedType 인자 추가
+    // 서명 + 만료 + 토큰 종류(access/refresh) 검증
     public boolean validate(String token, String expectedType) {
         try {
             Claims claims = parse(token);
@@ -79,7 +79,7 @@ public class TokenProvider {
         return false;
     }
 
-    // 토큰의 subject(email) ★
+    // 토큰의 subject(email)
     public String getEmail(String token) {
         return parse(token).getSubject();
     }

@@ -55,14 +55,8 @@ public class AuthService {
         if (memberRepository.existsByEmail(dto.getEmail())) {
             throw new CustomException(HttpStatus.CONFLICT, "DUPLICATE_EMAIL", "이미 가입된 이메일입니다.");
         }
-        try {
-            Member member = toEntity(dto);
-            memberRepository.save(member);
-            return true;
-        } catch (Exception e) {
-            log.error("회원 가입 시 오류 발생: {}", e.getMessage());
-            return false;
-        }
+        memberRepository.save(toEntity(dto));
+        return true;
     }
 
     // 로그인: 성공 → Access + Refresh 토큰 발급, Refresh는 DB 저장
@@ -74,7 +68,7 @@ public class AuthService {
             throw loginFailed();
         }
         TokenDto tokenDto = tokenProvider.createToken(email, member.getAuthority());
-        saveRefreshToken(member, tokenDto);   // 추가
+        saveRefreshToken(member, tokenDto);   // Refresh 는 DB 에 저장 (회원당 1개)
         return tokenDto;
     }
     // 카카오 로그인: 인가 코드 -> 카카오 사용자 확인 -> 우리 JWT 발급
@@ -92,7 +86,7 @@ public class AuthService {
         return tokenDto;
     }
 
-    // ★ 카카오 사용자 → Member
+    // 카카오 사용자 → Member
     private Member toKakaoMember(KakaoUserInfo info) {
         Member member = new Member();
         member.setEmail("kakao_" + info.id());   // 이메일 대신 고유한 대체값 → 토큰 sub·작성자 확인 코드 그대로 사용

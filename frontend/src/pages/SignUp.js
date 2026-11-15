@@ -63,7 +63,7 @@ const Signup = () => {
       try {
         const res = await AxiosApi.memberExist(inputEmail);
         if (ignore) return;
-        // 서버가 '이미 존재하면 true'를 반환한다고 가정
+        // 서버는 이미 가입된 이메일이면 true 를 반환 (GET /auth/exists/{email})
         setEmailStatus(res.data === true ? "duplicate" : "available");
       } catch (err) {
         if (!ignore) setEmailStatus("error");

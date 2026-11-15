@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   verify:
@@ -95,12 +95,3 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: verify-reports, path: reports/ }
-
-      # 커밋 메시지에 [report] 가 있으면 결과를 ci-results 브랜치에 남김 (작성자 확인용)
-      - name: 결과 브랜치에 기록
-        if: always() && contains(github.event.head_commit.message, '[report]')
-        run: |
-          cd reports && git init -q && git checkout -q -b ci-results
-          git config user.name "github-actions" && git config user.email "actions@users.noreply.github.com"
-          echo "${{ github.sha }} ${{ job.status }}" > STATUS && git add -A && git commit -qm "verify ${{ github.sha }}"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-results

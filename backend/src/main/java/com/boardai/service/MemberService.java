@@ -4,6 +4,7 @@ import com.boardai.dto.MemberResDto;
 import com.boardai.dto.MemberUpdateReqDto;
 import com.boardai.dto.PageResDto;
 import com.boardai.entity.Member;
+import com.boardai.exception.CustomException;
 import com.boardai.repository.MemberRepository;
 import com.boardai.repository.RefreshTokenRepository;
 import com.boardai.security.SecurityUtil;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -51,39 +53,30 @@ public class MemberService {
         return getMemberDetail(SecurityUtil.currentEmail());
     }
 
-    // 회원 수정
+    // 회원 수정 (토큰의 사용자 본인)
     public boolean updateMember(MemberUpdateReqDto dto) {
-        try {
-            String email = SecurityUtil.currentEmail();
-            Member member = memberRepository.findByEmail(email)
-                    .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email));
-            member.setName(dto.getName());
-            member.setImage(dto.getImage());
-            return true;
-        } catch (Exception e) {
-            log.error("회원 정보 수정 시 오류 발생: {}", e.getMessage());
-            return false;
-        }
+        String email = SecurityUtil.currentEmail();
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email));
+        member.setName(dto.getName());
+        member.setImage(dto.getImage());
+        return true;
     }
 
-    // 회원 삭제
+    // 회원 삭제 (본인만)
     public boolean deleteMember(String email) {
-        try {
-            if (!email.equals(SecurityUtil.currentEmail())) {
-                throw new IllegalArgumentException("본인만 탈퇴할 수 있습니다.");
-            }
-            Member member = memberRepository.findByEmail(email)
-                    .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email));
-            refreshTokenRepository.deleteByMember(member);
-            memberRepository.delete(member);
-            return true;
-        } catch (Exception e) {
-            log.error("회원 삭제 시 오류 발생: {}", e.getMessage());
-            return false;
+        if (!email.equals(SecurityUtil.currentEmail())) {
+            throw new CustomException(HttpStatus.FORBIDDEN, "FORBIDDEN", "본인만 탈퇴할 수 있습니다.");
         }
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email));
+        refreshTokenRepository.deleteByMember(member);
+        memberRepository.delete(member);
+        return true;
     }
 
     // 회원 목록 페이지네이션
+    @Transactional(readOnly = true)
     public PageResDto<MemberResDto> getMemberPage(int page, int size) {
         // PageRequest.of(페이지번호, 페이지크기, 정렬)
         // - 페이지번호는 0부터 시작 (0 = 첫 페이지)

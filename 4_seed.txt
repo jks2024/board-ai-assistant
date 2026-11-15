@@ -1,0 +1,24 @@
+가입: admin@test.com (강사)
+가입: student@test.com (학생)
+글 #1: 스터디 모임 공지
+글 #2: RAG 미니 프로젝트 과제 제출 안내
+글 #3: LazyInitializationException 해결 방법
+글 #4: JWT 만료 오류(401) 해결법
+글 #5: 중간 점검 일정
+글 #6: 카카오 로그인 KOE006 오류
+글 #7: 점심 맛집 추천
+글 #8: 3조 팀 프로젝트 회의록
+글 #9: React useEffect가 두 번 실행돼요
+글 #10: MySQL Public Key Retrieval 오류
+
+색인 상태
+  #10  READY     MySQL Public Key Retrieval 오류
+  #9   READY     React useEffect가 두 번 실행돼요
+  #8   READY     3조 팀 프로젝트 회의록
+  #7   READY     점심 맛집 추천
+  #6   READY     카카오 로그인 KOE006 오류
+  #5   READY     중간 점검 일정
+  #4   READY     JWT 만료 오류(401) 해결법
+  #3   READY     LazyInitializationException 해결 방법
+  #2   READY     RAG 미니 프로젝트 과제 제출 안내
+  #1   READY     스터디 모임 공지

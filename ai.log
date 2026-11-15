@@ -1,0 +1,77 @@
+INFO:     Started server process [3622]
+INFO:     Waiting for application startup.
+2026-11-15 07:39:25,087 INFO rag-ai-service - AI 서비스 시작 - engine=stub
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:47470 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47480 - "GET /health HTTP/1.1" 200 OK
+2026-11-15 07:39:38,253 INFO rag-ai-service - 색인 board=1 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,286 INFO rag-ai-service - 색인 board=2 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,311 INFO rag-ai-service - 색인 board=3 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,330 INFO rag-ai-service - 색인 board=4 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,348 INFO rag-ai-service - 색인 board=5 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,365 INFO rag-ai-service - 색인 board=6 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,383 INFO rag-ai-service - 색인 board=7 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,399 INFO rag-ai-service - 색인 board=8 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,415 INFO rag-ai-service - 색인 board=9 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,566 INFO rag-ai-service - 색인 board=10 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:38,973 INFO rag-ai-service - 질문='스터디 모임은 언제 하나요?' trace=['retrieve', 'grade', 'generate', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+2026-11-15 07:39:39,003 INFO rag-ai-service - 질문='오늘 날씨 어때?' trace=['retrieve', 'grade', 'rewrite', 'retrieve', 'grade', 'abstain', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+2026-11-15 07:39:39,017 INFO rag-ai-service - 질문='스터디 모임은 언제?' trace=['retrieve', 'grade', 'rewrite', 'retrieve', 'grade', 'abstain', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+2026-11-15 07:39:39,027 INFO rag-ai-service - 질문='useEffect가 두 번 실행돼요' trace=['retrieve', 'grade', 'generate', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+2026-11-15 07:39:39,137 INFO rag-ai-service - 색인 board=1 chunks=1
+INFO:     127.0.0.1:47486 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:39,162 INFO rag-ai-service - 질문='스터디 모임은 언제 하나요?' trace=['retrieve', 'grade', 'generate', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+2026-11-15 07:39:39,205 INFO rag-ai-service - 색인 삭제 board=1 chunks=1
+INFO:     127.0.0.1:47486 - "DELETE /index/1 HTTP/1.1" 200 OK
+2026-11-15 07:39:39,220 INFO rag-ai-service - 질문='스터디 모임은 언제 하나요?' trace=['retrieve', 'grade', 'rewrite', 'retrieve', 'grade', 'abstain', 'format']
+INFO:     127.0.0.1:47486 - "POST /chat HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-11-15 07:39:39,430 INFO rag-ai-service - AI 서비스 종료
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3622]
+INFO:     Started server process [3789]
+INFO:     Waiting for application startup.
+2026-11-15 07:39:42,170 INFO rag-ai-service - AI 서비스 시작 - engine=stub
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2026-11-15 07:39:45,750 INFO rag-ai-service - 색인 board=2 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,763 INFO rag-ai-service - 색인 board=3 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,773 INFO rag-ai-service - 색인 board=4 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,782 INFO rag-ai-service - 색인 board=5 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,791 INFO rag-ai-service - 색인 board=6 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,800 INFO rag-ai-service - 색인 board=7 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,810 INFO rag-ai-service - 색인 board=8 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,823 INFO rag-ai-service - 색인 board=9 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,838 INFO rag-ai-service - 색인 board=10 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,847 INFO rag-ai-service - 색인 board=11 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,885 INFO rag-ai-service - 색인 board=11 chunks=1
+INFO:     127.0.0.1:54422 - "POST /index HTTP/1.1" 200 OK
+2026-11-15 07:39:45,902 INFO rag-ai-service - 질문='FastAPI가 꺼져 있으면 게시판은?' trace=['retrieve', 'grade', 'generate', 'format']
+INFO:     127.0.0.1:54422 - "POST /chat HTTP/1.1" 200 OK

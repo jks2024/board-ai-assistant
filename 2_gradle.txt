@@ -1,0 +1,49 @@
+
+Welcome to Gradle 9.7.1!
+
+Here are the highlights of this release:
+ - Isolated Projects graduates to incubating
+ - Broader Configuration Cache compatibility
+ - Resilient Sync helps you fix broken builds
+ - More source locations in problem reports
+
+For more details see https://docs.gradle.org/9.7.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-11-15T07:39:07.064Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-11-15T07:39:07.110Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-15T07:39:07.112Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-11-15T07:39:07.118Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-11-15T07:39:07.120Z ERROR 3260 --- [board-ai-backend] [ionShutdownHook] org.hibernate.orm.core                   : HHH000478: Unsuccessful: 
+    alter table board 
+       drop 
+       foreign key FKsds8ox89wwf6aihinar49rmfy
+2026-11-15T07:39:07.122Z ERROR 3260 --- [board-ai-backend] [ionShutdownHook] org.hibernate.orm.core                   : HHH000478: Unsuccessful: 
+    alter table comment 
+       drop 
+       foreign key FKlij9oor1nav89jeat35s6kbp1
+2026-11-15T07:39:07.123Z ERROR 3260 --- [board-ai-backend] [ionShutdownHook] org.hibernate.orm.core                   : HHH000478: Unsuccessful: 
+    alter table comment 
+       drop 
+       foreign key FKmrrrpi513ssu63i2783jyiv9m
+2026-11-15T07:39:07.124Z ERROR 3260 --- [board-ai-backend] [ionShutdownHook] org.hibernate.orm.core                   : HHH000478: Unsuccessful: 
+    alter table refresh_token 
+       drop 
+       foreign key FK5gdbafb2i76hk1ai18ah6an4w
+2026-11-15T07:39:07.133Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-11-15T07:39:07.136Z  INFO 3260 --- [board-ai-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+> Task :test
+
+BUILD SUCCESSFUL in 20s
+6 actionable tasks: 6 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

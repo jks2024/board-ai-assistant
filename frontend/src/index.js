@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css"; // 한글 글꼴 (npm 패키지)
 import { AuthProvider } from "./context/AuthContext";
 import reportWebVitals from "./reportWebVitals";
 

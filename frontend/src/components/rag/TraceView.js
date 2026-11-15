@@ -18,6 +18,13 @@ const Path = styled.ol`
   flex-wrap: wrap;
   align-items: center;
   gap: 6px 0;
+  /* 노드 사이 연결선 (색이 달라 클래스가 달라도 모든 li 사이에 그림) */
+  li + li::before {
+    content: "";
+    width: 14px;
+    height: 2px;
+    background: #c9cfdc;
+  }
 `;
 
 const Step = styled.li`
@@ -31,12 +38,6 @@ const Step = styled.li`
     color: ${({ $c }) => $c};
     background: ${({ $c }) => $c}14;
     border: 1px solid ${({ $c }) => $c}40;
-  }
-  & + &::before {
-    content: "";
-    width: 14px;
-    height: 2px;
-    background: ${({ theme }) => theme.color.line};
   }
 `;
 

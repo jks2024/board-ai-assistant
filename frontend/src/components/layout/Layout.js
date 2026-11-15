@@ -25,6 +25,7 @@ const Bar = styled.div`
   display: flex;
   align-items: center;
   gap: 28px;
+  @media (max-width: 640px) { gap: 10px; padding: 0 14px; }
 `;
 
 const Logo = styled(Link)`
@@ -36,6 +37,7 @@ const Logo = styled(Link)`
   font-size: ${({ theme }) => theme.size.lg};
   letter-spacing: -0.02em;
   white-space: nowrap;
+  @media (max-width: 640px) { span.text { display: none; } }
 `;
 
 /* 로고: 번호 탭 모양 '#' + 형광펜 점 */
@@ -77,6 +79,8 @@ const Nav = styled.nav`
   }
   a:hover { color: #fff; }
   a.active { color: #fff; background: rgba(255, 255, 255, 0.12); }
+  a { white-space: nowrap; }
+  @media (max-width: 640px) { a { padding: 8px; font-size: 14px; } }
 `;
 
 const User = styled.div`
@@ -85,6 +89,7 @@ const User = styled.div`
   gap: 10px;
   font-size: ${({ theme }) => theme.size.sm};
   white-space: nowrap;
+  @media (max-width: 640px) { span.name, span.role { display: none; } }
 `;
 
 const Avatar = styled.span`
@@ -155,7 +160,7 @@ const Layout = () => {
         <Bar>
           <Logo to="/">
             <Mark aria-hidden>#</Mark>
-            게시판 AI 도우미
+            <span className="text">게시판 AI 도우미</span>
           </Logo>
           <Nav>
             <NavLink to="/" end>게시판</NavLink>
@@ -164,8 +169,8 @@ const Layout = () => {
           {isLogin ? (
             <User>
               <Avatar aria-hidden>{name.charAt(0).toUpperCase()}</Avatar>
-              <span>{name}</span>
-              {isAdmin && <Role>관리자</Role>}
+              <span className="name">{name}</span>
+              {isAdmin && <Role className="role">관리자</Role>}
               <HeaderBtn onClick={onLogout}>로그아웃</HeaderBtn>
             </User>
           ) : (

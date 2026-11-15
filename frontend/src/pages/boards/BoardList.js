@@ -60,7 +60,7 @@ const SearchForm = styled.form`
   display: flex;
   gap: 6px;
   width: 280px;
-  input { padding: 8px 12px; }
+  input { height: 34px; padding: 0 12px; font-size: 14px; }
   @media (max-width: 640px) { flex: 1; width: auto; }
 `;
 
